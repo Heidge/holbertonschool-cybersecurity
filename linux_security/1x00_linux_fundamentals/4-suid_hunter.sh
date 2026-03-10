@@ -1,2 +1,2 @@
 #!/bin/bash
-find -f "$1" -perm -4000
+find "$1" -type f -perm -4000
