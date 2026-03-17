@@ -1,2 +1,2 @@
 #!/bin/bash
-ss -4ltnp "sport = :$1" | awk 'NR>1 { print $NF }' | grep -oP 'users:\(\("\K[^"]+'
+lsof -i :"$1" -s TCP:LISTEN | awk 'NR==2 {print $1}'
