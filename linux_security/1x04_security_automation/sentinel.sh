@@ -33,4 +33,27 @@ check_integrity() {
     done
 }
 
-check_integrity 
+check_integrity
+
+check_ports() {
+    current_ports=$(ss -lnt | grep -v "State" | awk '{print $4}' | cut -d':' -f2)
+
+    for port in $current_ports; do
+        is_allowed=false
+
+        for allowed_port in ${ALLOWED_PORTS[@]}; do
+            if [[ "$port"=="$allowed_port" ]]; then
+                is_allowed=true
+                break
+            fi
+        done
+
+        if [[ "$is_allowed"==false ]]; then
+            fuser -k "$port/tcp" > /dev/null 2>&1
+
+            echo "ALERT: Killed rogue process on port $port"
+        fi
+    done
+}
+
+check_ports
