@@ -17,12 +17,13 @@ Each directory includes:
 
 ## Projects List
 
-| Project Name | Description | Link |
+| Project | Description | Link |
 | :--- | :--- | :--- |
-| **Automation Security** | Monitoring services, ports, and file integrity. | [View Project](./1x04_security_automation) |
-| **User Management** | Hardening user access and permissions. | [View Project](#) |
-| **Network Hardening** | Firewall configuration and traffic control. | [View Project](#) |
-| **System Auditing** | Logging, monitoring, and forensic basics. | [View Project](#) |
+| **Project 0** | Linux Fundamentals | [1x00_linux_fundamentals](https://github.com/Heidge/holbertonschool-cybersecurity/tree/main/linux_security/1x00_linux_fundamentals) |
+| **Project 1** | Shell Operations | [1x01_shell_ops](https://github.com/Heidge/holbertonschool-cybersecurity/tree/main/linux_security/1x01_shell_ops) |
+| **Project 2** | Identity Management | [1x02_identity_management](https://github.com/Heidge/holbertonschool-cybersecurity/tree/main/linux_security/1x02_identity_management) |
+| **Project 3** | System Visibility | [1x03_system_visibility](https://github.com/Heidge/holbertonschool-cybersecurity/tree/main/linux_security/1x03_system_visibility) |
+| **Project 4** | Security Automation | [1x04_security_automation](https://github.com/Heidge/holbertonschool-cybersecurity/tree/main/linux_security/1x04_security_automation) |
 
 > [!TIP]
 > All scripts are designed to be idempotent and follow security best practices for automated hardening.
