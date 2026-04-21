@@ -15,6 +15,8 @@ check_services() {
     done
 }
 
+check_services
+
 check_integrity() {
     for file in "${FILES_TO_WATCH[@]}"; do
         filename=$(basename "$file")
