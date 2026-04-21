@@ -41,7 +41,7 @@ check_ports() {
     for port in $current_ports; do
         is_allowed=false
 
-        for allowed_port in ${ALLOWED_PORTS[@]}; do
+        for allowed in ${ALLOWED_PORTS[@]}; do
             if [[ "$port"=="$allowed_port" ]]; then
                 is_allowed=true
                 break
