@@ -1,13 +1,19 @@
 #!/bin/bash
 [[ -f sentinel.conf ]] && source sentinel.conf && [[ -n $SERVICES && -n $FILES_TO_WATCH ]] || { echo "Config Error"; exit 1; }
 
+log() {
+    echo -e "{\n\t\"timestamp\": $(date -u +\"%Y-%m-%dT%H:%M:%SZ\"),\n\t\"component\": \"$1\",\n\t\"target\": \"$2\",\n\t\"status\": \"$3\",\n\t\"details\": \"$4\"\n}" >> /var/log/sentinel.log
+}
+
 check_services() {
     for svc in "${SERVICES[@]}"; do
-        if pgrep -f "$svc"; then
+        if pgrep -f "$svc" > /dev/null; then
             echo "OK: $svc is running"
+            log "SERVICE" "$svc" "OK" "Is running"
         else
             if eval "$svc"; then
                 echo "FIXED: Restarted $svc"
+                log "SERVICE" "$svc" "FIXED" "Restarted service"
             else
                 echo "ERROR: Failed to start $svc"
             fi
@@ -26,9 +32,11 @@ check_integrity() {
 
         if [[ "$current_hash" == "$golden_hash" ]]; then
             echo "OK: $file integrity verified"
+            log "INTEGRITY" "$file" "OK" "Integrity verified"
         else
             cp "$gold_file" "$file"
             echo "FIXED: Restored $file"
+            log "INTEGRITY" "$file" "FIXED" "Restored file"
         fi
     done
 }
@@ -50,8 +58,8 @@ check_ports() {
 
         if [[ "$is_allowed"==false ]]; then
             fuser -k "$port/tcp" > /dev/null 2>&1
-
             echo "ALERT: Killed rogue process on port $port"
+            log "PORT" "$port" "ALERT" "Killed rogue process"
         fi
     done
 }
