@@ -1,0 +1,9 @@
+[Unit]
+Description=Triggers automatically Sentinel every 5 minutes at boot
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=5min
+
+[Install]
+WantedBy=timers.target
