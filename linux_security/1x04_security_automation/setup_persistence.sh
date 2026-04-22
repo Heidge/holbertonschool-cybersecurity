@@ -1,4 +1,5 @@
 #!/bin/bash
-cp sentinel.service sentinel.timer /etc/systemd/system/
+cp sentinel.service /etc/systemd/system/
+cp sentinel.timer /etc/systemd/system/
 systemctl daemon-reload
 systemctl start sentinel.timer
