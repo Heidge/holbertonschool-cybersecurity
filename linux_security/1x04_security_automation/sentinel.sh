@@ -2,7 +2,7 @@
 [[ -f sentinel.conf ]] && source sentinel.conf && [[ -n $SERVICES && -n $FILES_TO_WATCH ]] || { echo "Config Error"; exit 1; }
 
 log() {
-    echo -e "{\n\t\"timestamp\": $(date -u +\"%FT%TZ\"),\n\t\"component\": \"$1\",\n\t\"target\": \"$2\",\n\t\"status\": \"$3\",\n\t\"details\": \"$4\"\n}" >> /var/log/sentinel.log
+    echo -e "{\n\t\"timestamp\": \"$(date -u +%FT%TZ)\",\n\t\"component\": \"$1\",\n\t\"target\": \"$2\",\n\t\"status\": \"$3\",\n\t\"details\": \"$4\"\n}" >> /var/log/sentinel.log
 }
 
 check_services() {
