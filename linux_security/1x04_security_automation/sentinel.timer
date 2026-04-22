@@ -2,6 +2,7 @@
 Description=Triggers automatically Sentinel every 5 minutes at boot
 
 [Timer]
+Unit=sentinel.service
 OnBootSec=1min
 OnUnitActiveSec=5min
 
