@@ -13,6 +13,7 @@ source ./lib/ssh.sh
 
 log "Hardening framework initialized"
 
+setup_fw
 #setup_ufw
 apply_firewall_policy
 open_allowed_ports
