@@ -1,19 +1,16 @@
 #!/bin/bash
 
-setup_ufw() {
-    # Replace IPV6=no by IPV6=yes if needed
-    sed -i 's/^IPV6=.*/IPV6=yes/' /etc/default/ufw
-
-    apt update && sudo apt install ufw
-
-    ufw --force enable
-
-    if ufw status | grep -q "active"; then
-        log "NETWORK" "Firewall" "Sucess" "UFW is active"
-    else
-        log "NETWORK" "Firewall" "Error" "UFW failed to start"
-    fi
-}
+#setup_ufw() {
+#    apt update && apt install ufw
+#
+#    ufw --force enable
+#
+#    if ufw status | grep -q "active"; then
+#        log "NETWORK" "Firewall" "Sucess" "UFW is active"
+#    else
+#        log "NETWORK" "Firewall" "Error" "UFW failed to start"
+#    fi
+#}
 
 apply_firewall_policy() {
     ufw default deny incoming > /dev/null
@@ -29,8 +26,8 @@ apply_firewall_policy() {
         log "NETWORK" "Firewall" "Success" "Default ingoing policy set to allow"
     echo "DEFAULT_OUTPUT=allow" >> "$FIREWALL_RULES_FILE"
     else
-        log "NETWORK" "Firewall" "Error" "Failed to set default ingoing policy"
-    fi
+        log "NETWORK" "Firewall" "Error" "Failed to set to set default ingoing policy"
+    fi 
 }
 
 open_allowed_ports() {
@@ -49,7 +46,7 @@ open_allowed_ports() {
 
 harden_kernel_network() {
     sed -i 's/^#*net.ipv4.ip_forward.*/net.ipv4.ip_forward=0/' /etc/sysctl.conf
-    
+   
     if grep -q "net.ipv4.icmp_echo_ignore_all" /etc/sysctl.conf; then
         sed -i 's/^#*inet.ipv4.icmp_echo_ignore_all.*/net.ipv4.icmp_echo_ignore_all=1/' /etc/sysctl.conf
     else
