@@ -26,7 +26,7 @@ apply_firewall_policy() {
         log "NETWORK" "Firewall" "Success" "Default ingoing policy set to allow"
     echo "DEFAULT_OUTPUT=allow" >> "$FIREWALL_RULES_FILE"
     else
-        log "NETWORK" "Firewall" "Error" "Failed to set to set default ingoing policy"
+        log "NETWORK" "Firewall" "Error" "Failed to set default ingoing policy"
     fi 
 }
 
