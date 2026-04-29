@@ -10,6 +10,7 @@ source ./config/harden.cfg
 source ./lib/utils.sh
 source ./lib/network.sh
 source ./lib/ssh.sh
+source ./lib/identity.sh
 source ./lib/system.sh
 
 log "Hardening framework initialized"
@@ -25,6 +26,10 @@ harden_kernel_network
 harden_ssh
 
 #Identity domain security applications
+set_password_policy
+set_account_lockout
+cleanup_unprivileged_users
+lock_root_account
 
 #System secruity applications
 update_repositories_and_packages
