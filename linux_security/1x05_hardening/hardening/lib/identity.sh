@@ -43,20 +43,25 @@ set_account_lockout() {
 
 cleanup_unprivileged_users() {
     log "IDENTITY" "Cleanup" "Info" "Starting cleanup of non-privileged users..."
-
+    local count=0
+    local deleted_users=""
     # Loop through user in passwd file and check if user is not nobody
     for user in $(awk -F: '$3 > 1000 && $1 != "nobody" {print $1}' "$PASSWD_FILE"); do
 
         # Check if user is in group sudo or wheel and if not delete its account
         if ! groups "$user" | grep -qE "\b({$GROUPS_NOLOCK})\b"; then
-            log "IDENTITY" "Cleanup" "Info" "Deleting unprivileged user: $user"
-
             # Delete account and his personal directory
             userdel -r "$user" 2>"$BEAN"
+            deleted_users="$deleted_users $user"
+            ((count++))
         fi
     done
-
-    log "IDENTITY" "Cleanup" "Success" "Non-privileged users cleanup finished."
+    
+    if [[ $count -gt 0 ]]; then
+        log "IDENTITY" "Cleanup" "Success" "$count unauthorized users removed:$deleted_users"
+    else
+        log "IDENTITY" "Cleanup" "Info" "No unauthorized users found to remove."
+    fi
 }
 
 lock_root_account() {
