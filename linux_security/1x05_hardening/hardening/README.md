@@ -29,7 +29,7 @@ The framework is organized into four major security domains:
 
 ## 📁 Project Structure
 
-.
+```
 ├── harden.sh              # 🚀 Main execution entry point
 ├── config/
 │   └── harden.cfg         # ⚙️ Configuration variables and file paths
@@ -40,6 +40,7 @@ The framework is organized into four major security domains:
 │   ├── system.sh          # 📦 Update and Package functions
 │   └── utils.sh           # 🛠️ Logging and Audit Report functions
 └── audit_report.txt       # 📜 Compliance report generated after run
+```
 
 ## 🛠️ Usage
 
