@@ -24,6 +24,7 @@ Each directory includes:
 | **Project 2** | Identity Management | [1x02_identity_management](https://github.com/Heidge/holbertonschool-cybersecurity/tree/main/linux_security/1x02_identity_management) |
 | **Project 3** | System Visibility | [1x03_system_visibility](https://github.com/Heidge/holbertonschool-cybersecurity/tree/main/linux_security/1x03_system_visibility) |
 | **Project 4** | Security Automation | [1x04_security_automation](https://github.com/Heidge/holbertonschool-cybersecurity/tree/main/linux_security/1x04_security_automation) |
+| **Project 5** | Linux Capstone: Hardening Automation | [1x05_hardening](https://github.com/Heidge/holbertonschool-cybersecurity/tree/main/linux_security/1x05_hardening) |
 
 > [!TIP]
 > All scripts are designed to be idempotent and follow security best practices for automated hardening.
