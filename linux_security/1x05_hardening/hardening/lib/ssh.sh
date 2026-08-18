@@ -1,3 +1,5 @@
+#!/bin/bash
+
 harden_ssh() {
     if [ -f "$SSH_CFG" ]; then
 
